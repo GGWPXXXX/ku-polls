@@ -44,4 +44,3 @@ class DetailView(generic.DetailView):
     template_name = "detail.html"
     def get_queryset(self):
         return Question.objects.filter(pub_date__lte=timezone.now())
-
