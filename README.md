@@ -11,13 +11,14 @@ https://cpske.github.io/ISP) course at Kasetsart University.
 
 You need to install the necessary dependencies for this project
 1. Install [Python](https://www.python.org/downloads/).
-2. Use the following command to install necessary dependencies.
+
+2. Install python virtual environment.
 ```
-pip install -r requirements.txt 
-``` 
-3. Install python virtual environment.
-```bash
-python -m pip install --user virtualenv
+python -m pip install virtualenv 
+```
+3. Create new environment.
+```
+python -m venv venv
 ```
 4. Run this command to anable virtual environment.
 ```
@@ -30,11 +31,15 @@ then use.
 Set-ExecutionPolicy Unrestricted -Scope Process 
 venv\Scripts\activate
 ```
- 5. Run the program.
+5. Use the following command to install necessary dependencies.
+```
+pip install -r requirements.txt 
+``` 
+6. Run the program.
 ```
 python .\manage.py runserver
 ```
-  6. If you want to exit the program simply hit ctrl+c to deactivate django server and use 
+  7. If you want to exit the program simply hit ctrl+c to deactivate django server and use 
 ```
 deactivate
 ```
@@ -50,3 +55,8 @@ All project documents are in the [Project Wiki](../../wiki/Home).
 - [Development Plan](../../wiki/Development%20Plan)
 - [Iteration 1 Plan](../../wiki/Iteration-1-Plan)
 
+## Superuser Acoout 
+
+username: admin
+
+password: uaregood 
