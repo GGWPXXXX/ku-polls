@@ -1,0 +1,92 @@
+
+li a {
+    color: white;
+}
+
+
+ul li {
+    list-style-type: none;
+}
+
+
+body {
+    background: white url("images/background.jpg") no-repeat;
+    background-size: 100%;
+    color:#fff;
+}
+
+
+table {
+    margin-left: auto;
+    background-color: #000;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+th{
+    color:#fff;
+
+}
+
+tr {
+    border-bottom: 1px solid #ddd;
+    font-size: 20px;
+}
+
+td {
+    padding: 8px;
+    
+}
+
+
+a {
+    text-decoration: none;
+    color: white;
+}
+table ol{
+    color: #fff;
+}
+
+
+#voteBTN{
+    padding: 3%;
+    font-size: large;
+    margin-left: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border:none;
+}
+#voteBTN:hover{
+    padding: 3%;
+    font-size: large;
+    margin-left: 50%;
+    background-color: rgba(255, 0, 0, 0.5);
+    color: #fff;
+    border:none;
+
+}
+table, th, td {
+    border: 1px solid #ddd; 
+}
+#buttonContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+#voteAgain,
+#home {
+    padding: 5%;
+    font-size: large;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    text-align: center;
+}
+
+#voteAgain:hover,
+#home:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+
