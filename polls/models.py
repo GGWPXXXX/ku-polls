@@ -46,7 +46,8 @@ class Question(models.Model):
         Returns:
             bool: True if the question is published, False otherwise.
         """
-        return timezone.now >= self.pub_date
+        now = timezone.now()
+        return now >= self.pub_date
     
     def can_vote(self):
         """
@@ -58,7 +59,9 @@ class Question(models.Model):
         if self.end_date is None:
             return self.pub_date <= timezone.now()
         else:
-            return self.pub_date <= timezone.now() <= self.end_date 
+            return self.pub_date <= timezone.now() <= self.end_date
+
+
         
 
 class Choice(models.Model):

@@ -59,8 +59,43 @@ class QuestionModelTests(TestCase):
         past_pub_date = timezone.now() - datetime.timedelta(days=1)
         question = Question(pub_date=past_pub_date)
         self.assertTrue(question.is_published())
+        
+    def test_can_vote_with_no_end_date(self):
+        """
+        Test if a user can vote when there is no end_date set.
+        The can_vote method should return True.
+        """
+        question = Question(pub_date=timezone.now())
+        self.assertTrue(question.can_vote())
 
+    def test_can_vote_before_end_date(self):
+        """
+        Test if a user can vote before the end_date.
+        The can_vote method should return True.
+        """
+        future_end_date = timezone.now() + datetime.timedelta(days=1)
+        question = Question(pub_date=timezone.now(), end_date=future_end_date)
+        self.assertTrue(question.can_vote())
 
+    def test_cannot_vote_after_end_date(self):
+        """
+        Test if a user cannot vote after the end_date has passed.
+        The can_vote method should return False.
+        """
+        past_end_date = timezone.now() - datetime.timedelta(days=1)
+        question = Question(pub_date=timezone.now(), end_date=past_end_date)
+        self.assertFalse(question.can_vote())
+        
+    def test_cannot_vote_with_same_end_date(self):
+        """
+        Test if a user cannot vote when the end_date is the same as the pub_date.
+        The can_vote method should return True.
+        """
+        current_time = timezone.now()
+        question = Question(pub_date=current_time, end_date=current_time)
+        self.assertTrue(question.can_vote())
+
+        
 def create_question(question_text, days):
     """
     Create a question with the given question_text and a publication date offset by the given number of days.
