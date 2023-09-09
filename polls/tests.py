@@ -32,6 +32,34 @@ class QuestionModelTests(TestCase):
         time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
         recent_question = Question(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
+    
+    def test_is_published_future_pub_date(self):
+        """
+        Test for a question with a future pub date.
+        The is_published method should return False.
+        """
+        future_pub_date = timezone.now() + datetime.timedelta(days=1)
+        question = Question(pub_date=future_pub_date)
+        self.assertFalse(question.is_published())
+
+    def test_is_published_default_pub_date(self):
+        """
+        Test for a question with the default pub date (now).
+        The is_published method should return True.
+        """
+        current_time = timezone.now()
+        question = Question(pub_date=current_time)
+        self.assertTrue(question.is_published())
+
+    def test_is_published_past_pub_date(self):
+        """
+        Test for a question with a pub date in the past.
+        The is_published method should return True.
+        """
+        past_pub_date = timezone.now() - datetime.timedelta(days=1)
+        question = Question(pub_date=past_pub_date)
+        self.assertTrue(question.is_published())
+
 
 def create_question(question_text, days):
     """

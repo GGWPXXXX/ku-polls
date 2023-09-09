@@ -13,7 +13,7 @@ class Question(models.Model):
     """
     question_text = models.CharField(max_length=100)
     pub_date = models.DateTimeField("Date Added", default=timezone.now)
-    end_date = models.DateField("Date Ended", null=True)
+    end_date = models.DateTimeField("Date Ended", null=True)
 
     def __str__(self) -> str:
         """
@@ -56,7 +56,7 @@ class Question(models.Model):
             bool: True if the question can be voted on, False otherwise.
         """
         if self.end_date is None:
-            return True
+            return self.pub_date <= timezone.now()
         else:
             return self.pub_date <= timezone.now() <= self.end_date 
         

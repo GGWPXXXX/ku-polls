@@ -39,19 +39,29 @@ def vote(request, question_id):
     """
     View for handling the voting process for a specific question.
     """
-    question = get_object_or_404(Question, pk=question_id)
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST["choice"])
-    except (KeyError, Choice.DoesNotExist):
+    if Question.can_vote():
+        question = get_object_or_404(Question, pk=question_id)
+        try:
+            selected_choice = question.choice_set.get(pk=request.POST["choice"])
+        except (KeyError, Choice.DoesNotExist):
+            return render(
+                request,
+                "detail.html",
+                {
+                    "question": question,
+                    "error_message": "You didn't select a choice.",
+                },
+            )
+        else:
+            selected_choice.votes += 1
+            selected_choice.save()
+            return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
+    else:
         return render(
             request,
             "detail.html",
             {
                 "question": question,
-                "error_message": "You didn't select a choice.",
+                "error_message": "You cannot vote on this question.",
             },
         )
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
