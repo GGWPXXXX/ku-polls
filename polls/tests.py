@@ -94,8 +94,7 @@ class QuestionModelTests(TestCase):
         current_time = timezone.now()
         question = Question(pub_date=current_time, end_date=current_time)
         self.assertTrue(question.can_vote())
-
-        
+    
 def create_question(question_text, days):
     """
     Create a question with the given question_text and a publication date offset by the given number of days.
