@@ -57,7 +57,7 @@ class Question(models.Model):
             bool: True if the question can be voted on, False otherwise.
         """
         if self.end_date is None:
-            return self.pub_date <= timezone.now()
+            return True
         else:
             return self.pub_date <= timezone.now() <= self.end_date
 
