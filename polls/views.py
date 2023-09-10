@@ -33,6 +33,18 @@ class DetailView(generic.DetailView):
     template_name = "detail.html"
 
     def get(self, request, *args, **kwargs):
+        """
+        Get the details of a specific question.
+
+        Args:
+            request (HttpRequest): The request object.
+
+        Raises:
+            Http404: If the question is not found.
+
+        Returns:
+            HttpResponse: The response object.
+        """
         self.object = self.get_object()
 
         # Check if the poll is votable

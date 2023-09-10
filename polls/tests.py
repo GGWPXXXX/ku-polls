@@ -6,7 +6,7 @@ from .models import Question
 
 class QuestionModelTests(TestCase):
     """
-    Tests for the Question model.
+    Tests for the Question model.  
     """
 
     def test_was_published_recently_with_future_question(self):
