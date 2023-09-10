@@ -8,25 +8,86 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
+    {% if messages %}
+    <div class="messages">
+        <ul>
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
     {% if latest_question_list %}
     <table>
         <tr>
             <th>
                 <h1>Question</h1>
             </th>
+            <th>
+                <h1>Status</h1>
+            </th>
+            <th>
+                <h1>Result</h1>
+            </th>
         </tr>
         <tr>
             <td>
                 <ol>
                     {% for question in latest_question_list %}
-                        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+                        <li>
+                            <p><a href="{% url 'polls:detail' question.id %}" {% if not question.can_vote %}class="disabled" data-disabled="true"{% endif %}>
+                                {{ question.question_text }}
+                            </a>
+                        </p>
+                        </li>
                     {% endfor %}
                 </ol>
             </td>
+            <td>
+                <ul>
+                    {% for question in latest_question_list %}
+                        <li>
+                            {% if question.can_vote %}
+                                <span class="status"><p style="color: lightgreen;">Open</p></span>
+                            {% else %}
+                                <span class="status"><p style="color: red;">Closed</p></span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    {% for question in latest_question_list %}
+                        <li>
+                            {% if question.can_vote %}
+                            <a href="{% url 'polls:results' question.id %}" class="results-link"><p style="color: lightgreen;">Results</p></a>
+                            {% else %}
+                            <a href="{% url 'polls:results' question.id %}" class="results-link"><p style="color: red;" class="disabled" data-disabled="true">Results</p></a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </td>
+            
         </tr>
     </table>
     {% else %}
     <p>No polls are available.</p>
     {% endif %}
+
+<script>
+    const disabledLinks = document.querySelectorAll('.disabled');
+    disabledLinks.forEach(link => {
+        if (link.getAttribute('data-disabled') === 'true') {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert("Voting for this poll is closed.");
+            });
+        }
+    });
+</script>
+
 </body>
 </html>
