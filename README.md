@@ -16,11 +16,20 @@ You need to install the necessary dependencies for this project
 ```
 python -m pip install virtualenv 
 ```
-3. Create new environment.
+
+3. Create a new `.env` file in the project's root directory. You can use a text editor of your choice to create and edit the file.
+
+4. Add the following configuration settings to the `.env` file:
+
+```
+SECRET_KEY=your_secret_key_here
+```
+
+5. Create new environment.
 ```
 python -m venv venv
 ```
-4. Run this command to anable virtual environment.
+6. Run this command to anable virtual environment.
 ```
 venv\Scripts\activate
 ```
@@ -31,15 +40,17 @@ then use.
 Set-ExecutionPolicy Unrestricted -Scope Process 
 venv\Scripts\activate
 ```
-5. Use the following command to install necessary dependencies.
+7. Use the following command to install necessary dependencies.
 ```
 pip install -r requirements.txt 
 ``` 
-6. Run the program.
+8. Run the program.
 ```
+python manage.py migrate
+python manage.py loaddata data/polls-v1.json
 python .\manage.py runserver
 ```
-  7. If you want to exit the program simply hit ctrl+c to deactivate django server and use 
+  9. If you want to exit the program simply hit ctrl+c to deactivate django server and use 
 ```
 deactivate
 ```
@@ -56,8 +67,3 @@ All project documents are in the [Project Wiki](../../wiki/Home).
 - [Iteration 1 Plan](../../wiki/Iteration-1-Plan)
 - [Iteration 2 Plan](../../wiki/Iteration-2-Plan)
 
-## Superuser Acoout 
-
-username: admin
-
-password: uaregood 
