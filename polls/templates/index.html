@@ -27,16 +27,19 @@
             <th>
                 <h1>Status</h1>
             </th>
+            <th>
+                <h1>Result</h1>
+            </th>
         </tr>
         <tr>
             <td>
                 <ol>
                     {% for question in latest_question_list %}
                         <li>
-                            <a href="{% url 'polls:detail' question.id %}" {% if not question.can_vote %}class="disabled" data-disabled="true"{% endif %}>
+                            <p><a href="{% url 'polls:detail' question.id %}" {% if not question.can_vote %}class="disabled" data-disabled="true"{% endif %}>
                                 {{ question.question_text }}
                             </a>
-                            
+                        </p>
                         </li>
                     {% endfor %}
                 </ol>
@@ -46,14 +49,28 @@
                     {% for question in latest_question_list %}
                         <li>
                             {% if question.can_vote %}
-                                <span class="status">Open</span>
+                                <span class="status"><p style="color: lightgreen;">Open</p></span>
                             {% else %}
-                                <span class="status">Closed</span>
+                                <span class="status"><p style="color: red;">Closed</p></span>
                             {% endif %}
                         </li>
                     {% endfor %}
                 </ul>
             </td>
+            <td>
+                <ul>
+                    {% for question in latest_question_list %}
+                        <li>
+                            {% if question.can_vote %}
+                            <a href="{% url 'polls:results' question.id %}" class="results-link"><p style="color: lightgreen;">Results</p></a>
+                            {% else %}
+                            <a href="{% url 'polls:results' question.id %}" class="results-link"><p style="color: red;" class="disabled" data-disabled="true">Results</p></a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </td>
+            
         </tr>
     </table>
     {% else %}
@@ -61,7 +78,6 @@
     {% endif %}
 
 <script>
-    // disable clickable links with the 'disabled' class
     const disabledLinks = document.querySelectorAll('.disabled');
     disabledLinks.forEach(link => {
         if (link.getAttribute('data-disabled') === 'true') {
@@ -72,6 +88,6 @@
         }
     });
 </script>
-    
+
 </body>
 </html>

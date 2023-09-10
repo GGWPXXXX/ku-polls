@@ -22,5 +22,12 @@
         </fieldset>
         <input type="submit" value="Vote" id="voteBTN">
     </form>
+    <form action="{% url 'polls:results' question.id %}" method="get">
+        <input type="submit" value="Results" id="resultBTN">
+    </form>
+    <form action="{% url 'polls:index' %}" method="get">
+        <input type="submit" id="home_detail" value="Back to List of Polls">
+    </form>
 </body>
+
 </html>

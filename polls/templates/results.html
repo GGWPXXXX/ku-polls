@@ -21,29 +21,23 @@
             <td>
                 <ul>
                     {% for choice in question.choice_set.all %}
-                        <li>{{ choice.choice_text }}</li>
+                        <li><p>{{ choice.choice_text }}</p></li>
                     {% endfor %}
                 </ul>
             </td>
             <td>
                 <ul>
                     {% for choice in question.choice_set.all %}
-                        <li>{{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+                        <li><p>{{ choice.votes }} vote{{ choice.votes|pluralize }}</p></li>
                     {% endfor %}
                 </ul>
             </td>
         </tr>
     </table>
-    <div id="buttonContainer">
-        <form action="{% url 'polls:detail' question.id %}" method="get">
-            <input type="submit" id="voteAgain" value="Vote again">
-        </form>
-        
-        <form action="{% url 'polls:index' %}" method="get">
-            <input type="submit" id="home" value="Back to home">
-        </form>
-    </div>
     
+    <form action="{% url 'polls:index' %}" method="get">
+        <input type="submit" id="home_result" value="Back to home">
+    </form>   
     
     
 </body>
