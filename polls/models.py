@@ -62,9 +62,6 @@ class Question(models.Model):
         else:
             return self.pub_date <= now <= self.end_date
 
-
-        
-
 class Choice(models.Model):
     """
     Represents a choice for a poll question.

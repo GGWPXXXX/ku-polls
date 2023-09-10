@@ -94,15 +94,15 @@ class QuestionModelTests(TestCase):
         future_end_date = timezone.now() + datetime.timedelta(days=7)  # Set end_date 7 days in the future
         question = Question(pub_date=timezone.now(), end_date=future_end_date)
         self.assertTrue(question.can_vote())
-    
+
 def create_question(question_text, days):
     """
     Create a question with the given question_text and a publication date offset by the given number of days.
-    
+
     Args:
         question_text (str): The text of the question.
         days (int): The number of days to offset the publication date.
-    
+
     Returns:
         Question: The created Question object.
     """
