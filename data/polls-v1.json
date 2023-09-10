@@ -4,7 +4,8 @@
   "pk": 1,
   "fields": {
     "question_text": "How frequently do you use GitHub for version control and collaboration in your projects?",
-    "pub_date": "2023-08-31T09:46:28Z"
+    "pub_date": "2023-08-31T09:46:28Z",
+    "end_date": null
   }
 },
 {
@@ -12,7 +13,17 @@
   "pk": 2,
   "fields": {
     "question_text": "In your Scrum process, how often do you conduct sprint planning meetings?",
-    "pub_date": "2023-08-31T09:47:45Z"
+    "pub_date": "2023-08-31T09:47:45Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 3,
+  "fields": {
+    "question_text": "Am I too handsome?",
+    "pub_date": "2023-09-09T12:47:56Z",
+    "end_date": "2023-09-09T12:48:06Z"
   }
 },
 {
@@ -48,7 +59,7 @@
   "fields": {
     "question": 2,
     "choice_text": "Irregularly",
-    "votes": 0
+    "votes": 1
   }
 },
 {
@@ -57,7 +68,7 @@
   "fields": {
     "question": 2,
     "choice_text": "We don't follow Scrum.",
-    "votes": 1
+    "votes": 4
   }
 },
 {
@@ -75,7 +86,7 @@
   "fields": {
     "question": 1,
     "choice_text": "Weekly",
-    "votes": 0
+    "votes": 1
   }
 },
 {
@@ -102,6 +113,24 @@
   "fields": {
     "question": 1,
     "choice_text": "Never",
+    "votes": 1
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 11,
+  "fields": {
+    "question": 3,
+    "choice_text": "YES",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 12,
+  "fields": {
+    "question": 3,
+    "choice_text": "YES",
     "votes": 0
   }
 }
