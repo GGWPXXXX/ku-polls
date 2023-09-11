@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
+    {% comment %} <div id="header">
+    </div> {% endcomment %}
     {% if messages %}
     <div class="messages">
         <ul>
@@ -19,7 +21,7 @@
     {% endif %}
 
     {% if latest_question_list %}
-    <table>
+    <table id="main_table">
         <tr>
             <th>
                 <h1>Question</h1>
@@ -76,6 +78,9 @@
     {% else %}
     <p>No polls are available.</p>
     {% endif %}
+    <div id="footer">
+        <p>© 2023 KU Polls By <a href="https://github.com/GGWPXXXX" target="_blank">GG_WPX, 2023</a></p>
+    </div>
 
 <script>
     const disabledLinks = document.querySelectorAll('.disabled');

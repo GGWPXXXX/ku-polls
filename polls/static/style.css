@@ -1,114 +1,126 @@
-
 li a {
-    color: white;
+  color: white;
 }
-
 
 ul li {
-    list-style-type: none;
+  list-style-type: none;
 }
-
 
 body {
-    background: white url("images/background.jpg") no-repeat;
-    background-size: 100%;
-    color:#fff;
+  background: white url("images/background.jpg") no-repeat;
+  background-size: 100%;
+  color: #fff;
 }
-
 
 table {
-    margin-left: auto;
-    background-color: #000;
-    border-collapse: collapse;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-
+  margin-left: auto;
+  background-color: #000;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-th{
-    color:#fff;
-
+th {
+  color: #fff;
 }
 
 tr {
-    border-bottom: 1px solid #ddd;
-    font-size: 20px;
+  border-bottom: 1px solid #ddd;
+  font-size: 20px;
 }
 
 td {
-    padding: 8px;
-    
+  padding: 8px;
 }
-
 
 a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
-table ol{
-    color: #fff;
-}
-
-
-#voteBTN{
-    padding: 3%;
-    font-size: large;
-    margin-left: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border:none;
-}
-#voteBTN:hover{
-    padding: 3%;
-    font-size: large;
-    margin-left: 50%;
-    background-color: rgba(255, 0, 0, 0.5);
-    color: #fff;
-    border:none;
-
-}
-table, th, td {
-    border: 1px solid #ddd; 
+table ol {
+  color: #fff;
 }
 
+#voteBTN {
+  padding: 3%;
+  font-size: large;
+  margin-left: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+}
+#voteBTN:hover {
+  padding: 3%;
+  font-size: large;
+  margin-left: 50%;
+  background-color: rgba(255, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+}
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
 
 #home_result {
-    padding: 2%;
-    font-size: large;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    text-align: center;
-    position: absolute;
-    right: 0; 
-    margin-top: 2%;
-    margin-right: 45%;
+  padding: 2%;
+  font-size: large;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  margin-top: 2%;
+  margin-right: 45%;
 }
 
-#home_result:hover,#resultBTN:hover,
+#home_result:hover,
+#resultBTN:hover,
 #home_detail:hover {
-    background-color: rgba(255, 0, 0, 0.5);
+  background-color: rgba(255, 0, 0, 0.5);
 }
 #resultBTN {
-    padding: 2%;
-    font-size: large;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    text-align: center;
-    position: absolute;
-    right: 0; 
+  padding: 2%;
+  font-size: large;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  text-align: center;
+  position: absolute;
+  right: 0;
 }
 form label {
-    font-size: 20px;
+  font-size: 20px;
 }
-#home_detail{
-    padding: 2%;
-    font-size: large;
+#home_detail {
+  padding: 2%;
+  font-size: large;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  text-align: center;
+  margin-right: 50%;
+}
+/* #header {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.5);
+} */
+#footer{
+    display: block;
+    width: 100%;
+    left: 0%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
     text-align: center;
-    margin-right: 50%;
 }
-
-
+#main_table {
+    position: absolute;
+    top: 20%;
+    width: 80%;
+    left: 10%;
+}
