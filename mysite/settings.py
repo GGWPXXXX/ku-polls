@@ -8,7 +8,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY", default="django-insecure-7r2)k(sjz_63eb-c2oixa+vys!n^d45krpq3m0ozx9s_8apesv")
+SECRET_KEY = config(
+    "SECRET_KEY", default="django-insecure-7r2)k(sjz_63eb-c2oixa+vys!n^d45krpq3m0ozx9s_8apesv")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
@@ -70,6 +71,11 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
+AUTHENTICATION_BACKENDS = [
+
+    'django.contrib.auth.backends.ModelBackend',
+
+]
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -84,6 +90,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+LOGIN_REDIRECT_URL = 'polls:index'  
+LOGOUT_REDIRECT_URL = 'login'         
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

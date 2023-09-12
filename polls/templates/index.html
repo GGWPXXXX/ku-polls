@@ -10,6 +10,11 @@
 <body>
     {% comment %} <div id="header">
     </div> {% endcomment %}
+    {%if user.is_authenticated%}
+        <p>Welcome back, {{user.username.title}}</p>
+    {%else%}
+        <p>Please <a href="{% url 'login' %}"></a> login to vote!</p>
+    {%endif%}
     {% if messages %}
     <div class="messages">
         <ul>
