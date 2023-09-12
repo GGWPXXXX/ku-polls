@@ -2,6 +2,8 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib import admin
+from django.contrib.auth.models import User
+
 
 class Question(models.Model):
     """
@@ -42,17 +44,17 @@ class Question(models.Model):
     def is_published(self):
         """
         Checks if the question is published.
-        
+
         Returns:
             bool: True if the question is published, False otherwise.
         """
         now = timezone.now()
         return now >= self.pub_date
-    
+
     def can_vote(self):
         """
         Checks if the question can be voted on.
-        
+
         Returns:
             bool: True if the question can be voted on, False otherwise.
         """
@@ -61,6 +63,7 @@ class Question(models.Model):
             return self.pub_date <= now
         else:
             return self.pub_date <= now <= self.end_date
+
 
 class Choice(models.Model):
     """
@@ -73,7 +76,12 @@ class Choice(models.Model):
     """
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=100)
-    votes = models.IntegerField(default=0)
+    # votes = models.IntegerField(default=0)
+
+    @property
+    def votes(self):
+        # count the votes for this choice
+        return self.vote_set.count()
 
     def __str__(self) -> str:
         """
@@ -83,3 +91,9 @@ class Choice(models.Model):
             str: The choice text.
         """
         return self.choice_text
+
+
+class Vote(models.Model):
+    """Record  a vote of choice by user"""
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

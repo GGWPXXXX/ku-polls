@@ -1,9 +1,10 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Question, Choice
+from .models import Question, Choice, Vote
 from django.utils import timezone
 from django.views import generic
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 class IndexView(generic.ListView):
     """
@@ -57,6 +58,7 @@ class DetailView(generic.DetailView):
     def get_queryset(self):
         return Question.objects.filter(pub_date__lte=timezone.now())
 
+@login_required
 def vote(request, question_id):
     """
     View for handling the voting process for a specific question.
@@ -78,7 +80,15 @@ def vote(request, question_id):
                 "error_message": "You didn't select a choice.",
             },
         )
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        return redirect("polls:results", question.id)
+    # selected_choice.votes += 1
+    # selected_choice.save()
+    user = request.user
+    try:
+        vote = Vote.objects.get(user=user, choice__question=question)
+        #update this vote
+        vote.choice = selected_choice
+    except Vote.DoesNotExist:
+        vote = Vote(user=user, choice=selected_choice)
+    vote.save()
+    
+    return redirect("polls:results", question.id)
