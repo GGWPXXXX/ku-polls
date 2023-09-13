@@ -14,10 +14,10 @@
 <body>
     <div id="header">
         <ul>
-            <li>Home</li>
-            <li>Register</li>
-            <li>Login</li>
-            <li>Admin</li>
+            <li><a href="{% url 'polls:index' %}">Home</a></li>
+            <li><a href=""></a>Register</a></li>
+            <li><a href="">Login</a></li>
+            <li><a href="{% url 'admin:login' %}">Admin</a></li>
         </ul>
     </div> 
     {% if user.is_authenticated %}
