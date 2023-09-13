@@ -26,6 +26,7 @@ th {
 tr {
   border-bottom: 1px solid #ddd;
   font-size: 20px;
+  padding: 0%;
 }
 
 td {
@@ -102,12 +103,6 @@ form label {
   text-align: center;
   margin-right: 50%;
 }
-/* #header {
-  display: block;
-  width: 100%;
-  height: 100px;
-  background-color: rgba(0, 0, 0, 0.5);
-} */
 #footer{
     display: block;
     width: 100%;
@@ -120,7 +115,115 @@ form label {
 }
 #main_table {
     position: absolute;
-    top: 20%;
+    top: 23%;
     width: 80%;
     left: 10%;
+}
+#correct_logo, #wrong_logo {
+  display: block;
+  width: auto;
+  height: 25px;
+  margin-left: -40%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-top: 10%;
+  text-align: center;
+}
+#wrong_logo{
+
+  background-image: url("images/wrong_logo.png");
+
+}
+#correct_logo{
+  background-image: url("images/correct_logo.png");
+}
+.results-list {
+  margin: 0 0 3px 0;
+}
+#correct_result, #wrong_result {
+  display: block;
+  width: 90%;
+  height: 30px;
+  margin-left: -10%;
+  text-align: center;
+  border-radius: 5px;
+  font-size: medium;
+  margin-top: 8%;
+  padding-top: 5px;
+  transition: all 1s;
+}
+
+#correct_result {
+  background-color: rgba(0, 255, 64, 0.705);
+  box-shadow: 0px 0px 10px 0px rgb(0, 255, 64);
+}
+
+#wrong_result {
+  background-color: rgba(255, 0, 0, 0.705);
+  box-shadow: 0px 0px 10px 0px rgb(255, 10, 194);
+}
+#wrong_result:hover{
+  width: 100%;
+  height: 35px;
+  margin-left: -15%;
+  background-color: rgb(255, 0, 0);
+  box-shadow: 0px 0px 10px 0px rgb(255, 10, 194);
+}
+#correct_result:hover{
+  width: 100%;
+  height: 35px;
+  margin-left: -15%;
+  background-color: rgb(0, 255, 64);
+  box-shadow: 0px 0px 10px 0px rgb(0, 255, 64);
+}
+#question{
+  margin-top: 1%;
+  margin-left: 5%;
+}
+
+#marq_login{
+  font-size: large;
+  top:10%;
+  position: absolute;
+
+}
+#header{
+  display: block;
+  width: 100%;
+  left: 0%;
+  height: 70px;
+  position: absolute;
+  top:0;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding-top: 1%;
+}
+#header ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#header ul li{
+  display: inline-block;
+  width: 100px;
+  font-size: large;
+  background-color: rgba(202, 37, 180, 0.623);
+  height: 50px;
+  text-align: center;
+  line-height:50px;
+  border-radius: 20%;
+  margin: 5px;
+  transition: all 1s;
+}
+#header ul li:hover{
+  display: inline-block;
+  width: 110px;
+  font-size: large;
+  background-color: rgb(202, 37, 180);
+  height: 55px;
+  text-align: center;
+  line-height:50px;
+  border-radius: 20%;
+  margin: 5px;
 }

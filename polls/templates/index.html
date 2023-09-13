@@ -6,14 +6,24 @@
     <title>KU Polls</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    {% load static %}
+    <script src={% static '/js/script.js' %}>
+    </script>   
+    
 </head>
 <body>
-    {% comment %} <div id="header">
-    </div> {% endcomment %}
+    <div id="header">
+        <ul>
+            <li>Home</li>
+            <li>Register</li>
+            <li>Login</li>
+            <li>Admin</li>
+        </ul>
+    </div> 
     {% if user.is_authenticated %}
         Welcome back, {{ user.username }} 
-    {% else %}
-        Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+    {% else%}
+        <marquee behavior="alternate" direction="left" id="marq_login"> You need to login !</marquee>
     {% endif %}
     {% if messages %}
     <div class="messages">
@@ -42,11 +52,13 @@
             <td>
                 <ol>
                     {% for question in latest_question_list %}
-                        <li>
-                            <p><a href="{% url 'polls:detail' question.id %}" {% if not question.can_vote %}class="disabled" data-disabled="true"{% endif %}>
+                        <li id="question">
+                            <a href="{% url 'polls:detail' question.id %}" {% if not question.can_vote %}class="disabled" data-disabled="true"{% endif %}>
                                 {{ question.question_text }}
+                                <br>
                             </a>
-                        </p>
+                            
+                            <br>
                         </li>
                     {% endfor %}
                 </ol>
@@ -56,22 +68,26 @@
                     {% for question in latest_question_list %}
                         <li>
                             {% if question.can_vote %}
-                                <span class="status"><p style="color: lightgreen;">Open</p></span>
+                                <span class="status"><div id="correct_logo"></div></span>
+                                <br>
                             {% else %}
-                                <span class="status"><p style="color: red;">Closed</p></span>
+                                <span class="status"><div id="wrong_logo"></div></span>
+                                <br>
                             {% endif %}
-                        </li>
+                        </li>   
                     {% endfor %}
                 </ul>
             </td>
             <td>
-                <ul>
+                <ul class="results-list">
                     {% for question in latest_question_list %}
                         <li>
                             {% if question.can_vote %}
-                            <a href="{% url 'polls:results' question.id %}" class="results-link"><p style="color: lightgreen;">Results</p></a>
+                            <a href="{% url 'polls:results' question.id %}" class="results-link"><div id="correct_result">Results</div></a>
+                            <br>
                             {% else %}
-                            <a href="{% url 'polls:results' question.id %}" class="results-link"><p style="color: red;" class="disabled" data-disabled="true">Results</p></a>
+                            <a href="{% url 'polls:results' question.id %}" class="results-link"><div id="wrong_result" class="disabled" data-disabled="true">Results</div></a>
+                            <br>
                             {% endif %}
                         </li>
                     {% endfor %}
@@ -87,17 +103,6 @@
         <p>© 2023 KU Polls By <a href="https://github.com/GGWPXXXX" target="_blank">GG_WPX, 2023</a></p>
     </div>
 
-<script>
-    const disabledLinks = document.querySelectorAll('.disabled');
-    disabledLinks.forEach(link => {
-        if (link.getAttribute('data-disabled') === 'true') {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert("Voting for this poll is closed.");
-            });
-        }
-    });
-</script>
 
 </body>
 </html>
