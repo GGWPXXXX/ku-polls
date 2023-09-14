@@ -1,10 +1,12 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 from .models import Question, Choice, Vote
 from django.utils import timezone
 from django.views import generic
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LogoutView
 
 class IndexView(generic.ListView):
     """
@@ -15,9 +17,9 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """
-        Return the last 5 public questions.
+        Return the public questions.
         """
-        return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")[:5]
+        return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")
 
 class ResultsView(generic.DetailView):
     """
@@ -92,3 +94,6 @@ def vote(request, question_id):
     vote.save()
     
     return redirect("polls:results", question.id)
+
+class LogoutView(LogoutView):
+    next_page = reverse_lazy('polls:index')
