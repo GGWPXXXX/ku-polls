@@ -21,14 +21,14 @@
             {% endif %}
         </ul>
     </div> 
-    <h2>Register</h2>
+    <h1 id="register_header">Register</h1>
     <form method="POST">
       {% csrf_token %}
-      <table style="padding: 2ex">
+      <table id="signup_table">
         {{ form.as_table }} {# this line shows the sign-up form #}
         <tr>
           <td colspan="2">
-            <button type="submit">Register</button>
+            <button type="submit" id="reg_sub_btn">Register</button>
           </td>
         </tr>
       </table>

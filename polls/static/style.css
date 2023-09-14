@@ -226,3 +226,73 @@ form label {
   border-radius: 20%;
   margin: 5px;
 }
+#signup_table{
+  padding: 2ex;
+  position: absolute;
+  top: 30%;
+  width: 60%;
+  left: 20%;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 0px rgb(186, 12, 255);
+}
+#register_header{
+  text-align: center;
+  font-size: xx-large;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top:20%;
+  left : 20%;
+}
+#reg_sub_btn{
+  padding: 2%;
+  font-size: large;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  text-align: center;
+  margin-left: 45%;
+  transition: all 1s;
+}
+#reg_sub_btn:hover,
+#log_sub_btn:hover{
+  padding: 2%;
+  font-size: large;
+  background-color: rgba(255, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  text-align: center;
+  
+}
+#reg_sub_btn:hover{
+  margin-left: 45%;
+}
+#login_main_box{
+  padding: 2ex;
+  position: absolute;
+  top: 30%;
+  width: 20%;
+  left: 40%;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 0px rgb(186, 12, 255);
+  font-size: large;
+
+}
+#login_header{
+  text-align: center;
+  font-size: xx-large;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top:20%;
+  left : 40%;
+}
+#log_sub_btn{
+  padding: 2%;
+  font-size: large;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  text-align: center;
+  margin-left: 40%;
+  transition: all 1s;
+}
+

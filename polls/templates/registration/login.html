@@ -21,12 +21,16 @@
           {% endif %}
       </ul>
   </div>
-    <h2>Login</h2>
-    <form method="POST">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Login</button>
-      <input type="hidden" name="text" value="{{ next }}" />
-    </form>
+    <h2 id="login_header">Login</h2>
+    <div id="login_main_box">
+      <form method="POST">
+        
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="log_sub_btn">Login</button>
+        <input type="hidden" name="text" value="{{ next }}" />
+      
+      </form>
+  </div>
   </body>
 </html>
