@@ -1,9 +1,4 @@
 
-const loginAlert = () =>{
-    alert("You need to login in order to vote!!")
-}
-
-
 // use for warn user when polls is closed in index.
 const disableLinks= () => {
 

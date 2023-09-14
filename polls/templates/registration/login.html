@@ -7,7 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
   </head>
-  <body>
+  <body id="log_body">
     <div id="header">
       <ul>
           {% if user.is_authenticated %}
@@ -21,13 +21,15 @@
           {% endif %}
       </ul>
   </div>
-    <h2 id="login_header">Login</h2>
+    <div id="login_header"></div>
     <div id="login_main_box">
       <form method="POST">
         
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" id="log_sub_btn">Login</button>
+        <div id="log_sub_btn"><button type="submit" style="width: 250px; height: 100px; background-color: transparent; border: none;">
+          
+        </button></div>
         <input type="hidden" name="text" value="{{ next }}" />
       
       </form>
