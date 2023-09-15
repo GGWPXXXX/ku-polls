@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detail</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    {% load static %}
+    <script src={% static '/js/script.js' %}>
+    </script> 
+  </head>
+  <body>
     <form action="{% url 'polls:vote' question.id %}" method="post">
-        {% csrf_token %}
-        <fieldset>
-            <legend><h1>{{ question.question_text }}</h1></legend>
-            {% if error_message %}
-                <p><strong>{{ error_message }}</strong></p>
-            {% endif %}
-            {% for choice in question.choice_set.all %}
-                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-            {% endfor %}
-        </fieldset>
-        <input type="submit" value="Vote" id="voteBTN">
+      {% csrf_token %}
+      <fieldset>
+        <legend><h1>{{ question.question_text }}</h1></legend>
+        {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+        {% endif %} {% for choice in question.choice_set.all %}
+        <input
+          type="radio"
+          name="choice"
+          id="choice{{ forloop.counter }}"
+          value="{{ choice.id }}"
+        />
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label
+        ><br />
+        {% endfor %}
+      </fieldset>
+      <input type="submit" value="Vote" id="voteBTN" />
     </form>
     <form action="{% url 'polls:results' question.id %}" method="get">
-        <input type="submit" value="Results" id="resultBTN">
+      <input type="submit" value="Results" id="resultBTN" />
     </form>
     <form action="{% url 'polls:index' %}" method="get">
-        <input type="submit" id="home_detail" value="Back to List of Polls">
+      <input type="submit" id="home_detail" value="Back to List of Polls" />
     </form>
-</body>
-
+  </body>
 </html>
