@@ -13,6 +13,9 @@ const disableLinks= () => {
     });
     
 }
+const voteAlert = () =>{
+    alert("Your Vote has been received.")
+}
 
 
 document.addEventListener('DOMContentLoaded', function () {

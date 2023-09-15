@@ -68,7 +68,6 @@ def vote(request, question_id):
     View for handling the voting process for a specific question.
     """
     question = get_object_or_404(Question, pk=question_id)
-
     if not question.can_vote():
         messages.error(request, "Voting is not allowed for this question.")
         return redirect("polls:index")

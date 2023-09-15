@@ -28,10 +28,10 @@
         ><br />
         {% endfor %}
       </fieldset>
-      <input type="submit" value="Vote" id="voteBTN" />
+      <input type="submit" value="Vote" id="voteBTN"  onclick="voteAlert()" />
     </form>
     <form action="{% url 'polls:results' question.id %}" method="get">
-      <input type="submit" value="Results" id="resultBTN" />
+      <input type="submit" value="Results" id="resultBTN"/>
     </form>
     <form action="{% url 'polls:index' %}" method="get">
       <input type="submit" id="home_detail" value="Back to List of Polls" />
