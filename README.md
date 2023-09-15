@@ -70,3 +70,14 @@ All project documents are in the [Project Wiki](../../wiki/Home).
 - [Iteration 1 Plan](../../wiki/Iteration-1-Plan)
 - [Iteration 2 Plan](../../wiki/Iteration-2-Plan)
 
+
+## Demo Account for User
+| Username  | Password        |
+|-----------|-----------------|
+|   hellodemo1   | passwordisdat |
+|   hellodemo2   | passwordisdadadodo |
+
+## Demo Account for Admin
+| Username  | Password        |
+|-----------|-----------------|
+|   admin   | uaregood |
