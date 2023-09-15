@@ -11,7 +11,10 @@
     </script> 
   </head>
   <body>
-    <form action="{% url 'polls:vote' question.id %}" method="post">
+    <script>
+      var is_login = {% if user.is_authenticated %}true{% else %}false{% endif %};
+    </script>  
+    <form action="{% url 'polls:vote' question.id %}" method="post" id="voteForm">
       {% csrf_token %}
       <fieldset>
         <legend><h1>{{ question.question_text }}</h1></legend>
@@ -28,7 +31,7 @@
         ><br />
         {% endfor %}
       </fieldset>
-      <input type="submit" value="Vote" id="voteBTN"  onclick="voteAlert()" />
+      <input type="submit" value="Vote" id="voteBTN"  onclick="voteAlert();" />
     </form>
     <form action="{% url 'polls:results' question.id %}" method="get">
       <input type="submit" value="Results" id="resultBTN"/>

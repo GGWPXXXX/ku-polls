@@ -14,7 +14,20 @@ const disableLinks= () => {
     
 }
 const voteAlert = () =>{
-    alert("Your Vote has been received.")
+    var form = document.getElementById('voteForm');
+    var selectedChoice = form.querySelector('input[name="choice"]:checked');
+
+    // if user didnt select any choice.
+    if (!selectedChoice) {
+        alert("Please select a choice before voting.");
+        event.preventDefault(); // Prevent form submission
+    }
+    else if (!is_login){
+        alert("Please login.")
+    }
+    else{
+        alert("Your vote has been submitted. Thank you!");
+    }
 }
 
 
