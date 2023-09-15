@@ -1,0 +1,20 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$8m9EtCRuThpzofgciZXkLJ$jMO6k8MRkFqu+fNKgjVnF2TFvDZtle5sPOldNTsF5bg=",
+    "last_login": "2023-09-15T05:03:56.384Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "pattadon2546pn@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-09-08T06:43:35.608Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
