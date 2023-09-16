@@ -10,6 +10,7 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 
+
 class IndexView(generic.ListView):
     """
     View for displaying the index page with the latest questions.
@@ -23,12 +24,14 @@ class IndexView(generic.ListView):
         """
         return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")
 
+
 class ResultsView(generic.DetailView):
     """
     View for displaying the results of a specific question.
     """
     model = Question
     template_name = "results.html"
+
 
 class DetailView(generic.DetailView):
     """
@@ -55,12 +58,14 @@ class DetailView(generic.DetailView):
         # Check if the poll is votable
         if not self.object.can_vote():
             raise Http404("This poll is closed and cannot be voted on.")
-
-        context = self.get_context_data(object=self.object)
+        user_vote = get_selected_choice(request.user, self.object)
+        context = self.get_context_data(object=self.object, user_vote=user_vote)
         return self.render_to_response(context)
 
     def get_queryset(self):
         return Question.objects.filter(pub_date__lte=timezone.now())
+    
+
 
 @login_required
 def vote(request, question_id):
@@ -85,20 +90,24 @@ def vote(request, question_id):
         )
     # selected_choice.votes += 1
     # selected_choice.save()
-    user = request.user
+    
+    user = request.user 
     try:
         vote = Vote.objects.get(user=user, choice__question=question)
-        #update this vote
+        # update this vote
         vote.choice = selected_choice
     except Vote.DoesNotExist:
         vote = Vote(user=user, choice=selected_choice)
     vote.save()
-    
+
     return redirect("polls:results", question.id)
+
+
 
 class LogoutView(LogoutView):
     next_page = reverse_lazy('polls:index')
-    
+
+
 def signup(request: HttpRequest):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -108,7 +117,7 @@ def signup(request: HttpRequest):
             username = form.cleaned_data.get('username')
             # password input field is named 'password1'
             raw_passwd = form.cleaned_data.get('password1')
-            user = authenticate(username=username,password=raw_passwd)
+            user = authenticate(username=username, password=raw_passwd)
             login(request, user)
             return redirect('polls:index')
         # what if form is not valid?
@@ -117,3 +126,13 @@ def signup(request: HttpRequest):
         # create a user form and display it the signup page
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+def get_selected_choice(user, question):
+    try:
+        vote = Vote.objects.get(user=user, choice__question=question)
+        selected_choice = vote.choice
+    except Vote.DoesNotExist:
+        selected_choice = None
+
+    return selected_choice
