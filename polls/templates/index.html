@@ -57,7 +57,11 @@
                     {% for question in latest_question_list %}
                         <li id="question">
                             <a href="{% url 'polls:detail' question.id %}" {% if not question.can_vote %}class="disabled" data-disabled="true"{% endif %}>
-                                {{ question.question_text }}
+                                {% if not question.can_vote %}
+                                    <del style="color: red;">{{ question.question_text }}</del>
+                                {% else %}
+                                    {{question.question_text}}
+                                {% endif %}
                                 <br>
                             </a>
                             
