@@ -59,12 +59,12 @@ class DetailView(generic.DetailView):
         if not self.object.can_vote():
             raise Http404("This poll is closed and cannot be voted on.")
         user_vote_id = get_selected_choice(request.user, self.object)
-        context = self.get_context_data(object=self.object, user_vote_id=user_vote_id)
+        context = self.get_context_data(
+            object=self.object, user_vote_id=user_vote_id)
         return self.render_to_response(context)
 
     def get_queryset(self):
         return Question.objects.filter(pub_date__lte=timezone.now())
-    
 
 
 @login_required
@@ -88,10 +88,8 @@ def vote(request, question_id):
                 "error_message": "You didn't select a choice.",
             },
         )
-    # selected_choice.votes += 1
-    # selected_choice.save()
-    
-    user = request.user 
+
+    user = request.user
     try:
         vote = Vote.objects.get(user=user, choice__question=question)
         # update this vote
@@ -103,12 +101,24 @@ def vote(request, question_id):
     return redirect("polls:results", question.id)
 
 
-
 class LogoutView(LogoutView):
+    """Summary
+
+    Args:
+        LogoutView (TYPE): Description
+    """
     next_page = reverse_lazy('polls:index')
 
 
 def signup(request: HttpRequest):
+    """ signup for a new user account 
+
+    Args:
+        request (HttpRequest): 
+
+    Returns:
+        TYPE: Description
+    """
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -129,6 +139,7 @@ def signup(request: HttpRequest):
 
 
 def get_selected_choice(user, question):
+    """ get the selected choice for a user. """
     # Check if the user is logged in
     if user.is_authenticated:
         try:
@@ -140,4 +151,3 @@ def get_selected_choice(user, question):
         selected_choice_id = None  # User is not logged in
 
     return selected_choice_id
-
