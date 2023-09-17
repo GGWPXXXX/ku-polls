@@ -6,10 +6,31 @@
     <title>KU Polls</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    {% load static %}
+    <script src={% static '/js/script.js' %}>
+    </script>   
+    
 </head>
 <body>
-    {% comment %} <div id="header">
-    </div> {% endcomment %}
+    <div id="header">
+        <ul>
+            {% if user.is_authenticated %}
+
+            <li><a href="{% url 'polls:index' %}">Home</a></li>
+            <li><a href="{% url 'logout'%}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'polls:index' %}">Home</a></li>
+            <li><a href="{% url 'signup'%}">SignUp</a></a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'admin:login' %}">Admin</a></li>
+            {% endif %}
+        </ul>
+    </div> 
+    {% if user.is_authenticated %}
+        <div id="greeting">
+            <p>Hello, {{ user.username }}! 👋</p>
+        </div>  
+    {% endif %}
     {% if messages %}
     <div class="messages">
         <ul>
@@ -37,11 +58,17 @@
             <td>
                 <ol>
                     {% for question in latest_question_list %}
-                        <li>
-                            <p><a href="{% url 'polls:detail' question.id %}" {% if not question.can_vote %}class="disabled" data-disabled="true"{% endif %}>
-                                {{ question.question_text }}
+                        <li id="question">
+                            <a href="{% url 'polls:detail' question.id %}" {% if not question.can_vote %}class="disabled" data-disabled="true"{% endif %}>
+                                {% if not question.can_vote %}
+                                    <del style="color: red;">{{ question.question_text }}</del>
+                                {% else %}
+                                    {{question.question_text}}
+                                {% endif %}
+                                <br>
                             </a>
-                        </p>
+                            
+                            <br>
                         </li>
                     {% endfor %}
                 </ol>
@@ -51,22 +78,26 @@
                     {% for question in latest_question_list %}
                         <li>
                             {% if question.can_vote %}
-                                <span class="status"><p style="color: lightgreen;">Open</p></span>
+                                <span class="status"><div id="correct_logo"></div></span>
+                                <br>
                             {% else %}
-                                <span class="status"><p style="color: red;">Closed</p></span>
+                                <span class="status"><div id="wrong_logo"></div></span>
+                                <br>
                             {% endif %}
-                        </li>
+                        </li>   
                     {% endfor %}
                 </ul>
             </td>
             <td>
-                <ul>
+                <ul class="results-list">
                     {% for question in latest_question_list %}
                         <li>
                             {% if question.can_vote %}
-                            <a href="{% url 'polls:results' question.id %}" class="results-link"><p style="color: lightgreen;">Results</p></a>
+                            <a href="{% url 'polls:results' question.id %}" class="results-link"><div id="correct_result">Results</div></a>
+                            <br>
                             {% else %}
-                            <a href="{% url 'polls:results' question.id %}" class="results-link"><p style="color: red;" class="disabled" data-disabled="true">Results</p></a>
+                            <a href="{% url 'polls:results' question.id %}" class="results-link"><div id="wrong_result" class="disabled" data-disabled="true">Results</div></a>
+                            <br>
                             {% endif %}
                         </li>
                     {% endfor %}
@@ -76,23 +107,17 @@
         </tr>
     </table>
     {% else %}
-    <p>No polls are available.</p>
+    <script>
+        noQuestionAlert();
+    </script>
+    <div style=" padding:10%; text-align:center;  display: block; width: 50%; height: 100px; background-color: rgba(0, 0, 0, 0.5); position: absolute; top: 25%; margin-left: 15%;">
+        <center><h1>No polls are available.</h1></center>
+    </div>
     {% endif %}
     <div id="footer">
         <p>© 2023 KU Polls By <a href="https://github.com/GGWPXXXX" target="_blank">GG_WPX, 2023</a></p>
     </div>
 
-<script>
-    const disabledLinks = document.querySelectorAll('.disabled');
-    disabledLinks.forEach(link => {
-        if (link.getAttribute('data-disabled') === 'true') {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert("Voting for this poll is closed.");
-            });
-        }
-    });
-</script>
 
 </body>
 </html>

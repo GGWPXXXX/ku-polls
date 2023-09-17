@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <title>Register</title>
+  </head>
+  <body>
+    <div id="header">
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'polls:index' %}">Home</a></li>
+            <li><a href="{% url 'logout'%}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'polls:index' %}">Home</a></li>
+            <li><a href="{% url 'signup'%}">SignUp</a></a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'admin:login' %}">Admin</a></li>
+            {% endif %}
+        </ul>
+    </div> 
+    <h1 id="register_header">Register</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <table id="signup_table">
+        {{ form.as_table }} {# this line shows the sign-up form #}
+        <tr>
+          <td colspan="2">
+            <button type="submit" id="reg_sub_btn">Register</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+
+  </body>
+</html>

@@ -49,7 +49,8 @@ pip install -r requirements.txt
 8. Run the program.
 ```
 python manage.py migrate
-python manage.py loaddata data/polls-v1.json
+python manage.py loaddata data/users.json
+python manage.py loaddata data/polls.json
 python .\manage.py runserver
 ```
   9. If you want to exit the program simply hit ctrl+c to deactivate django server and use 
@@ -68,4 +69,16 @@ All project documents are in the [Project Wiki](../../wiki/Home).
 - [Development Plan](../../wiki/Development%20Plan)
 - [Iteration 1 Plan](../../wiki/Iteration-1-Plan)
 - [Iteration 2 Plan](../../wiki/Iteration-2-Plan)
+- [Iteration 3 Plan](../../wiki/Iteration-3-Plan)
 
+
+## Demo Account for User
+| Username  | Password        |
+|-----------|-----------------|
+|   hellodemo1   | passwordisdat |
+|   hellodemo2   | passwordisdadadodo |
+
+## Demo Account for Admin
+| Username  | Password        |
+|-----------|-----------------|
+|   admin   | uaregood |
