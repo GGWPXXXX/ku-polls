@@ -58,8 +58,8 @@ class DetailView(generic.DetailView):
         # Check if the poll is votable
         if not self.object.can_vote():
             raise Http404("This poll is closed and cannot be voted on.")
-        user_vote = get_selected_choice(request.user, self.object)
-        context = self.get_context_data(object=self.object, user_vote=user_vote)
+        user_vote_id = get_selected_choice(request.user, self.object)
+        context = self.get_context_data(object=self.object, user_vote_id=user_vote_id)
         return self.render_to_response(context)
 
     def get_queryset(self):
@@ -129,10 +129,15 @@ def signup(request: HttpRequest):
 
 
 def get_selected_choice(user, question):
-    try:
-        vote = Vote.objects.get(user=user, choice__question=question)
-        selected_choice = vote.choice
-    except Vote.DoesNotExist:
-        selected_choice = None
+    # Check if the user is logged in
+    if user.is_authenticated:
+        try:
+            vote = Vote.objects.get(user=user, choice__question=question)
+            selected_choice_id = vote.choice.id
+        except Vote.DoesNotExist:
+            selected_choice_id = None
+    else:
+        selected_choice_id = None  # User is not logged in
 
-    return selected_choice
+    return selected_choice_id
+
