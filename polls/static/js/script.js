@@ -19,17 +19,20 @@ const voteAlert = () =>{
 
     // if user didnt select any choice.
     if (!selectedChoice) {
-        alert("Please select a choice before voting.");
+        alert("Please select a choice before voting. 😅");
         event.preventDefault(); // Prevent form submission
     }
     else if (!is_login){
         alert("Please login.")
     }
     else{
-        alert("Your vote has been submitted. Thank you!");
+        alert("Your vote has been submitted. Thank you! 🥰");
     }
 }
 
+const noQuestionAlert = () =>{
+    alert("There're no polls right now. 🥹")
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     disableLinks();

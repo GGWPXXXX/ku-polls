@@ -46,21 +46,28 @@ table ol {
   color: #fff;
 }
 
-#voteBTN {
+#voteBTN, #backToListBTN {
   padding: 3%;
   font-size: large;
-  margin-left: 50%;
+  margin-left: 40%;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   border: none;
+  margin-top: 5%;
 }
-#voteBTN:hover {
+#voteBTN:hover,#backToListBTN:hover {
   padding: 3%;
   font-size: large;
-  margin-left: 50%;
+  margin-left: 40%;
   background-color: rgba(255, 0, 0, 0.5);
   color: #fff;
   border: none;
+}
+#backToListBTN{
+  margin-left: 0%;
+}
+#backToListBTN:hover{
+  margin-left: 0%;
 }
 table,
 th,
@@ -308,4 +315,17 @@ form label {
   padding:0;
   margin:0;
 
+}
+#greeting{
+  display: block;
+  width: 10%;
+  height: 5%;
+  top:13%;
+  position: absolute;
+  background-color: rgb(31, 214, 247);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 5px 5px 1px rgba(255, 255, 255, 1);
 }
