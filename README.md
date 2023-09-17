@@ -29,6 +29,7 @@ SECRET_KEY=your_secret_key_here
 
 5. Create new environment.
 ```
+cd ku-polls
 python -m venv venv
 ```
 6. Run this command to anable virtual environment.
