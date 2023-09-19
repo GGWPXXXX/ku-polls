@@ -102,38 +102,39 @@ def vote(request, question_id):
 
 
 class LogoutView(LogoutView):
-    """Summary
+    """
+    Customized logout view for redirecting to the 'polls:index' page after logout.
 
-    Args:
-        LogoutView (TYPE): Description
+    Attributes:
+        next_page (str): The URL to redirect to after logout.
     """
     next_page = reverse_lazy('polls:index')
 
 
 def signup(request: HttpRequest):
-    """ signup for a new user account 
+    """
+    View for user registration and account creation.
 
     Args:
-        request (HttpRequest): 
+        request (HttpRequest): The HTTP request object.
 
     Returns:
-        TYPE: Description
+        HttpResponse: A response object containing the rendered registration/signup.html page.
     """
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            # get named fields from the form data
+            # Get named fields from the form data
             username = form.cleaned_data.get('username')
-            # password input field is named 'password1'
+            # Password input field is named 'password1'
             raw_passwd = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_passwd)
             login(request, user)
             return redirect('polls:index')
-        # what if form is not valid?
-        # we should display a message in signup.html
+        # Handle the case where the form is not valid (e.g., display an error message)
     else:
-        # create a user form and display it the signup page
+        # Create a user registration form and display it on the signup page
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
 
