@@ -58,6 +58,7 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py loaddata data/users.json
 python manage.py loaddata data/polls.json
+python manage.py loaddata data/choice.json
 python .\manage.py runserver
 ```
 
