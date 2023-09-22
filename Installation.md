@@ -22,20 +22,14 @@ ALLOWED_HOSTS = *.ku.th, localhost, 127.0.0.1, ::1
 TIME_ZONE = Asia/Bangkok
 ```
 
-4. Add the following configuration settings to the `.env` file:
-
-```
-SECRET_KEY=your_secret_key_here
-```
-
-5. Create new environment.
+4. Create new environment.
 
 ```
 cd ku-polls
 python -m venv venv
 ```
 
-6. Run this command to anable virtual environment.
+5. Run this command to anable virtual environment.
 
 ```
 venv\Scripts\activate
@@ -52,13 +46,13 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 venv\Scripts\activate
 ```
 
-7. Use the following command to install necessary dependencies.
+6. Use the following command to install necessary dependencies.
 
 ```
 pip install -r requirements.txt
 ```
 
-8. Run the program.
+7. Run the program.
 
 ```
 python manage.py migrate
@@ -67,7 +61,7 @@ python manage.py loaddata data/polls.json
 python .\manage.py runserver
 ```
 
-9. If you want to exit the program simply hit ctrl+c to deactivate django server and use
+8. If you want to exit the program simply hit ctrl+c to deactivate django server and use
 
 ```
 deactivate
