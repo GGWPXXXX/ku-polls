@@ -1,44 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Result</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    <table border="1">
-        <tr>
-            <th>
-                <h1>{{ question.question_text }}</h1>
-            </th>
-            <th>
-                <h1>Vote Count</h1>
-            </th>
-        </tr>
-        <tr>
-            <td>
-                <ul>
-                    {% for choice in question.choice_set.all %}
-                        <li><p>{{ choice.choice_text }}</p></li>
-                    {% endfor %}
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    {% for choice in question.choice_set.all %}
-                        <li><p>{{ choice.votes }} vote{{ choice.votes|pluralize }}</p></li>
-                    {% endfor %}
-                </ul>
-            </td>
-        </tr>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <table border="1" id="result_table">
+      <tr>
+        <th>
+          <h1>{{ question.question_text }}</h1>
+        </th>
+        <th>
+          <h1>Vote Count</h1>
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            {% for choice in question.choice_set.all %}
+            <li><p>{{ choice.choice_text }}</p></li>
+            {% endfor %}
+          </ul>
+        </td>
+        <td>
+          <ul>
+            {% for choice in question.choice_set.all %}
+            <li><p>{{ choice.votes }} vote{{ choice.votes|pluralize }}</p></li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
     </table>
-    
+
     <form action="{% url 'polls:index' %}" method="get">
-        <input type="submit" id="home_result" value="Back to home">
-    </form>   
-    
-    
-</body>
+      <input type="submit" id="home_result" value="Back to home" />
+    </form>
+  </body>
 </html>
