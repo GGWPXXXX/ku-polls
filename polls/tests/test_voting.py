@@ -135,6 +135,5 @@ def test_vote_create_new_vote(self):
     self.client.login(username="testuser", password="testpassword")
     question = create_question(question_text="New Vote Question", days=-1)
     choice = create_choice(question, "Choice")
-    url = reverse("polls:vote", args=(question.id,))
     new_vote = Vote.objects.filter(user=user, choice=choice).first()
     self.assertIsNotNone(new_vote)
