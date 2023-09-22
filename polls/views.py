@@ -73,21 +73,12 @@ def vote(request, question_id):
     View for handling the voting process for a specific question.
     """
     question = get_object_or_404(Question, pk=question_id)
-    if not question.can_vote():
-        messages.error(request, "Voting is not allowed for this question.")
-        return redirect("polls:index")
-
+    selected_choice_id = request.POST.get("choice")
     try:
-        selected_choice = question.choice_set.get(pk=request.POST["choice"])
+        selected_choice = question.choice_set.get(pk=selected_choice_id)
     except (KeyError, Choice.DoesNotExist):
-        return render(
-            request,
-            "detail.html",
-            {
-                "question": question,
-                "error_message": "You didn't select a choice.",
-            },
-        )
+        messages.error(request, "You didn't select a choice.")
+        return redirect("polls:detail", question.id)
 
     user = request.user
     try:

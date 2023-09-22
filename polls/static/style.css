@@ -46,7 +46,8 @@ table ol {
   color: #fff;
 }
 
-#voteBTN, #backToListBTN {
+#voteBTN,
+#backToListBTN {
   padding: 3%;
   font-size: large;
   margin-left: 40%;
@@ -55,7 +56,8 @@ table ol {
   border: none;
   margin-top: 5%;
 }
-#voteBTN:hover,#backToListBTN:hover {
+#voteBTN:hover,
+#backToListBTN:hover {
   padding: 3%;
   font-size: large;
   margin-left: 40%;
@@ -63,10 +65,10 @@ table ol {
   color: #fff;
   border: none;
 }
-#backToListBTN{
+#backToListBTN {
   margin-left: 0%;
 }
-#backToListBTN:hover{
+#backToListBTN:hover {
   margin-left: 0%;
 }
 table,
@@ -191,7 +193,9 @@ form label {
   margin-top: 1%;
   margin-left: 5%;
 }
-
+#question_end_date{
+  margin-top: 10%;
+}
 #marq_login {
   font-size: large;
   top: 10%;
@@ -224,7 +228,7 @@ form label {
   line-height: 50px;
   border-radius: 20%;
   margin: 5px;
-  font-family:lovelo ;
+  font-family: lovelo;
   transition: all 1s;
 }
 #header ul li:hover {
@@ -279,7 +283,7 @@ form label {
 #login_main_box {
   padding: 2ex;
   position: absolute;
-  top: 40%;
+  top: 35%;
   width: 20%;
   left: 40%;
   height: 30%;
@@ -291,7 +295,7 @@ form label {
   background-image: url("images/login.png");
   background-size: contain;
   background-repeat: no-repeat;
-  width: 100%;
+  width: 50%;
   height: 200px;
   position: absolute;
   top: 10%;
@@ -304,23 +308,13 @@ form label {
   background-size: 250px;
   margin-left: 18%;
   margin-top: 10%;
-
 }
 
-#log_body {
-  background-image: url("images/background.gif");
-  background-size: cover;     
-  height: 90vh;
-  width: 10vw;
-  padding:0;
-  margin:0;
-
-}
-#greeting{
+#greeting {
   display: block;
   width: 10%;
   height: 5%;
-  top:13%;
+  top: 13%;
   position: absolute;
   background-color: rgb(31, 214, 247);
   color: #fff;
@@ -328,4 +322,13 @@ form label {
   border-radius: 10px;
   text-align: center;
   box-shadow: 5px 5px 1px rgba(255, 255, 255, 1);
+}
+#voteForm{
+  position: absolute;
+  top: 28%;
+  left: 30%;
+  width: 40%;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 0px rgb(186, 12, 255);
+  padding: 2%;
 }
