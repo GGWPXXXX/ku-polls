@@ -24,6 +24,7 @@ All project documents are in the [Project Wiki](../../wiki/Home).
 - [Iteration 2 Plan](../../wiki/Iteration-2-Plan)
 - [Iteration 3 Plan](../../wiki/Iteration-3-Plan)
 - [Iteration 4 Plan](../../wiki/Iteration-4-Plan)
+- [Task Board](https://github.com/users/GGWPXXXX/projects/2)
 
 ## Demo Account for User
 
