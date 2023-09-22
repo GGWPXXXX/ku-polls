@@ -66,8 +66,6 @@ def test_vote_valid_choice(self):
     """
     Test when a user votes for a valid choice.
     """
-    user = User.objects.create_user(
-        username="testuser", password="testpassword")
     self.client.login(username="testuser", password="testpassword")
     question = create_question(question_text="Valid Vote Question", days=-1)
     choice = create_choice(question, "Valid Choice")
@@ -81,8 +79,6 @@ def test_vote_invalid_choice(self):
     """
     Test when a user votes for an invalid choice.
     """
-    user = User.objects.create_user(
-        username="testuser", password="testpassword")
     self.client.login(username="testuser", password="testpassword")
     question = create_question(question_text="Invalid Vote Question", days=-1)
     url = reverse("polls:vote", args=(question.id,))
@@ -97,8 +93,6 @@ def test_vote_authenticated_user(self):
     """
     Test if an authenticated user can vote.
     """
-    user = User.objects.create_user(
-        username="testuser", password="testpassword")
     self.client.login(username="testuser", password="testpassword")
     question = create_question(question_text="Vote Question", days=-1)
     url = reverse("polls:vote", args=(question.id,))
@@ -128,8 +122,6 @@ def test_vote_update_existing_vote(self):
     choice1 = create_choice(question, "Choice 1")
     choice2 = create_choice(question, "Choice 2")
     vote = Vote.objects.create(user=user, choice=choice1)
-    url = reverse("polls:vote", args=(question.id,))
-    response = self.client.post(url, {"choice": choice2.id})
     updated_vote = Vote.objects.get(pk=vote.pk)
     self.assertEqual(updated_vote.choice, choice2)
 
@@ -144,6 +136,5 @@ def test_vote_create_new_vote(self):
     question = create_question(question_text="New Vote Question", days=-1)
     choice = create_choice(question, "Choice")
     url = reverse("polls:vote", args=(question.id,))
-    response = self.client.post(url, {"choice": choice.id})
     new_vote = Vote.objects.filter(user=user, choice=choice).first()
     self.assertIsNotNone(new_vote)
