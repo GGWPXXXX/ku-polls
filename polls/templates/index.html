@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KU Polls</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    {% load static %}
-    <script src={% static '/js/script.js' %}>
-    </script>   
-    
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+<title>Polls</title>
     <div id="header">
         <ul>
             {% if user.is_authenticated %}
@@ -20,7 +9,7 @@
             <li><a href="{% url 'logout'%}">Logout</a></li>
             {% else %}
             <li><a href="{% url 'polls:index' %}">Home</a></li>
-            <li><a href="{% url 'signup'%}">SignUp</a></a></li>
+            <li><a href="{% url 'signup'%}">SignUp</a></li>
             <li><a href="{% url 'login' %}">Login</a></li>
             <li><a href="{% url 'admin:login' %}">Admin</a></li>
             {% endif %}
@@ -124,7 +113,4 @@
     <div id="footer">
         <p>© 2023 KU Polls By <a href="https://github.com/GGWPXXXX" target="_blank">GG_WPX, 2023</a></p>
     </div>
-
-
-</body>
-</html>
+{% endblock %}
