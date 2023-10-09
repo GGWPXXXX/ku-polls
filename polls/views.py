@@ -1,6 +1,6 @@
-from django.http import Http404, HttpRequest
+from django.http import Http404, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from .models import Question, Choice, Vote
 from django.utils import timezone
 from django.views import generic
@@ -73,23 +73,27 @@ def vote(request, question_id):
     View for handling the voting process for a specific question.
     """
     question = get_object_or_404(Question, pk=question_id)
-    selected_choice_id = request.POST.get("choice")
+    this_user = request.user
+
     try:
-        selected_choice = question.choice_set.get(pk=selected_choice_id)
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+
     except (KeyError, Choice.DoesNotExist):
-        messages.error(request, "You didn't select a choice.")
-        return redirect("polls:detail", question.id)
+        return render(request, 'detail.html', {
+            'question': question,
+            'error_message': "You didn't select a choice.",
+        })
 
-    user = request.user
-    try:
-        vote = Vote.objects.get(user=user, choice__question=question)
-        # update this vote
-        vote.choice = selected_choice
-    except Vote.DoesNotExist:
-        vote = Vote(user=user, choice=selected_choice)
-    vote.save()
-
-    return redirect("polls:results", question.id)
+    else:
+        try:
+            # find a vote for this user and this question
+            vote = Vote.objects.get(user=this_user, choice__question=question)
+            # update his vote
+            vote.choice = selected_choice
+            vote.save()
+        except Vote.DoesNotExist:
+            Vote.objects.create(user=this_user, choice=selected_choice).save()
+        return redirect(reverse("polls:results", args=(question_id,)))
 
 
 class LogoutView(LogoutView):
